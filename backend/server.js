@@ -15,12 +15,7 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL || "*",
-    credentials: true,
-  })
-);
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -73,7 +68,6 @@ app.listen(PORT, async () => {
   console.log(`🚀 NewsPulse server running on port ${PORT}`);
   console.log(`📡 Environment: ${process.env.NODE_ENV || "development"}`);
 
-  // Run scraper safely
   try {
     console.log("🔍 Starting Hacker News scrape...");
     await scrapeHackerNews();
